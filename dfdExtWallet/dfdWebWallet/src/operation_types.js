@@ -1,0 +1,103 @@
+const operationTypes = [
+    "transfer",
+    "limit_order_create",
+    "limit_order_cancel",
+    "call_order_update",
+    "fill_order",
+    "account_create",
+    "account_update",
+    "account_whitelist",
+    "account_upgrade",
+    "account_transfer",
+    "asset_create",
+    "asset_update",
+    "asset_update_bitasset",
+    "asset_update_feed_producers",
+    "asset_issue",
+    "asset_reserve",
+    "asset_fund_fee_pool",
+    "asset_settle",
+    "asset_global_settle",
+    "asset_publish_feed",
+    "witness_create",
+    "witness_update",
+    "proposal_create",
+    "proposal_update",
+    "proposal_delete",
+    "withdraw_permission_create",
+    "withdraw_permission_update",
+    "withdraw_permission_claim",
+    "withdraw_permission_delete",
+    "committee_member_create",
+    "committee_member_update",
+    "committee_member_update_global_parameters",
+    "vesting_balance_create",
+    "vesting_balance_withdraw",
+    "worker_create",
+    "custom",
+    "assert",
+    "balance_claim",
+    "override_transfer",
+    "transfer_to_blind",
+    "blind_transfer",
+    "transfer_from_blind",
+    "asset_settle_cancel",
+    "asset_claim_fees",
+    "fba_distribute",
+    "bid_collateral",
+    "execute_bid",
+    "asset_claim_pool",
+    "lockbalance", // 48
+    'foreclose_balance', // 49
+    null, // 50
+    null, // 51
+    'pay_back', // 52
+    null,
+
+    // contract operations
+    'contract_register', // 54
+    null,
+    null,
+    'contract_invoke', // 57
+    null,
+    'transfer_contract', // 59
+
+    // other operations
+    "contract_transfer_fee_proposal",
+    "gurantee_create",
+    "gurantee_cancel",
+    "guard_refund_crosschain_trx",
+    "publisher_appointed",
+    "asset_fee_modification",
+    "bonus",
+    "set_guard_lockbalance",
+    "publisher_canceled",
+    "senator_determine_withdraw_deposit",
+    "account_create_multisignature_address",
+    "senator_determine_block_payment",
+    "eth_seri_guard_sign",
+    "eth_series_multi_sol_create",
+    "eth_multi_account_create_record",
+    "eths_multi_sol_guard_sign",
+    "eths_guard_sign_final",
+    "asset_eth_create",
+    "eths_coldhot_guard_sign_final",
+    "referendum_create",
+    "miner_referendum_senator",
+    "referendum_update",
+    "referendum_accelerate_pledge",
+    "block_address",
+    "cancel_address_block",
+    "eth_cancel_fail_crosschain_trx",
+    "eth_cancel_coldhot_fail_trx_operaion",
+    "eths_guard_change_signer",
+    "eths_guard_coldhot_change_signer",
+    "coldhot_cancel_combined_trx_operaion",
+    "guard_cancel_combine_trx",
+    "senator_pass_success_trx",
+    "coldhot_pass_combine_trx"
+];
+
+export default {
+    types: operationTypes
+}

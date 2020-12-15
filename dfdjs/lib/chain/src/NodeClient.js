@@ -1,0 +1,183 @@
+import secureRandom from "secure-random";
+
+import {Long} from "bytebuffer";
+
+import {Signature, PublicKey, hash, Address} from "../../ecc";
+import {ops} from "../../serializer";
+import {Apis} from "bitsharesjs-ws";
+// TODO: import axios
+const Buffer = require("safe-buffer").Buffer;
+
+class NodeClient {
+    constructor(apiInstance) {
+        this.apiInstance = apiInstance;
+    }
+
+    afterInited() {
+        return this.apiInstance.init_promise;
+    }
+
+    execDbApi() {
+        let args = Array.from(arguments);
+        var method = args[0];
+        var params = args.slice(1);
+        return this.apiInstance.db_api().exec(method, params);
+    }
+
+    getGlobalDynamicProperties() {
+        return this.apiInstance
+            .db_api()
+            .exec("get_dynamic_global_properties", []);
+    }
+
+    // 查询资产列表
+    listAssets(lower_bound_symbol, limit) {
+        return this.apiInstance
+            .db_api()
+            .exec("list_assets", [lower_bound_symbol, limit]);
+    }
+
+    // 查询地址的资产余额
+    getAddrBalances(address) {
+        return this.apiInstance.db_api().exec("get_addr_balances", [address]);
+    }
+
+    // 查询合约的资产余额
+    getContractBalances = function(address) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_contract_balance", [address]);
+    };
+
+    // 查询质押收益
+    getAddressPayBackBalance(address) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_address_pay_back_balance", [address, "DFD"]);
+    }
+
+    // 查询miner列表
+    listMiners(prefix, limit) {
+        return this.apiInstance
+            .db_api()
+            .exec("lookup_miner_accounts", [prefix, limit]);
+    }
+
+    // 查询miners数量
+    getMinersCount() {
+        return this.apiInstance.db_api().exec("get_miner_count", []);
+    }
+
+    // 查询miner信息
+    getMiner(minerIdOrAccountName) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_miner", [minerIdOrAccountName]);
+    }
+
+    // 查询account信息
+    getAccount(accountId) {
+        return this.apiInstance.db_api().exec("get_account", [accountId]);
+    }
+
+    // 根据账户名查询账户信息
+    getAccountByName(accountName) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_account_by_name", [accountName]);
+    }
+
+    // 根据账户查询地址信息
+    getAccountByAddresss(address) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_accounts_addr", [[address]])
+            .then(accounts => {
+                return accounts[0];
+            });
+    }
+
+    // 获取合约信息
+    getContractInfo(contractAddr) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_contract_info", [contractAddr]);
+    }
+
+    // 获取合约除字节码外的信息
+    getSimpleContractInfo(contractAddr) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_simple_contract_info", [contractAddr]);
+    }
+
+    // 获取合约交易的receipt
+    getContractTxReceipt(txid) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_contract_invoke_object", [txid]);
+    }
+
+    // 根据交易id查找交易
+    getTransactionById(txid) {
+        return this.apiInstance.db_api().exec("get_transaction_by_id", [txid]);
+    }
+
+    // 查询账户的质押信息
+    getAccountLockBalances(accountName) {
+        return this.apiInstance
+            .db_api()
+            .exec("get_account_lock_balance", [accountName]);
+    }
+
+    invokeContractOffline(callerPubKey, contractId, contractApi, apiArg) {
+        return this.apiInstance
+            .db_api()
+            .exec("invoke_contract_offline", [
+                callerPubKey.toString(),
+                contractId,
+                contractApi,
+                apiArg
+            ]);
+    }
+
+    invokeContractTesting(callerPubKey, contractId, contractApi, apiArg) {
+        return this.apiInstance
+            .db_api()
+            .exec("invoke_contract_testing", [
+                callerPubKey.toString(),
+                contractId,
+                contractApi,
+                apiArg
+            ]);
+    }
+
+    registerContractTesting(callerPubKey, contractGpcHex) {
+        return this.apiInstance
+            .db_api()
+            .exec("register_contract_testing", [
+                callerPubKey.toString(),
+                contractGpcHex
+            ]);
+    }
+    // @return [{amount: ..., asset_id: "..."}, gas_count]
+    transferToContractTesting(
+        callerPubKey,
+        contractId,
+        assetAmount,
+        assetIdOrSymbol,
+        transferMemo
+    ) {
+        return this.apiInstance
+            .db_api()
+            .exec("transfer_to_contract_testing", [
+                callerPubKey.toString(),
+                contractId,
+                assetAmount,
+                assetIdOrSymbol,
+                transferMemo
+            ]);
+    }
+}
+
+export default NodeClient;
