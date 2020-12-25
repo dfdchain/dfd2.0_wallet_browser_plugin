@@ -19,12 +19,12 @@ var Pay = function (appKey, appSecret) {
 var TransactionMaxGasPrice = "1000000000000";
 var TransactionMaxGas = "50000000000";
 
-var defaultXwcPayPushApiUrl = "http://wallet.dfd.cash/api";
+var defaultDfdPayPushApiUrl = "http://wallet.dfd.cash/api";
 
 function submitPayId(options) {
 	// push serialNumber to dfdpaypush
 	try {
-		var dfdPayPushApiUrl = options.callback || defaultXwcPayPushApiUrl;
+		var dfdPayPushApiUrl = options.callback || defaultDfdPayPushApiUrl;
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function () {
 
@@ -63,8 +63,8 @@ Pay.prototype = {
 			if (Utils.isExtInstalled())
 				openExtension(params);
 			else {
-				//window.alert("XwcExtWallet is not installed.");
-				if (window.confirm('XwcExtWallet is not installed. Click "ok" to install it.')) {
+				//window.alert("DfdExtWallet is not installed.");
+				if (window.confirm('DfdExtWallet is not installed. Click "ok" to install it.')) {
 					var installUrl = "https://chrome.google.com/webstore/detail/dfdextwallet/eboifcnkiocbamnhekeoembpmmcnebii";
 					window.open(installUrl);
 				}

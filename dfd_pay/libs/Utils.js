@@ -11,7 +11,7 @@ var isChrome = function() {
 };
 
 var isExtInstalled = function() {
-    return (typeof(XwcExtWallet) !== 'undefined');
+    return (typeof(DfdExtWallet) !== 'undefined');
 };
 
 var isMobile = function() {

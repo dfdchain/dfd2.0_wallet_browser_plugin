@@ -28,7 +28,7 @@ function openApp(appParams, options) {
 }
 
 function alertNanoInstall(){
-    if (window.confirm('XwcExtWallet is not installed. Click "ok" to install it.'))
+    if (window.confirm('DfdExtWallet is not installed. Click "ok" to install it.'))
     {
         //window.open("https://wallet.dfd.cash/");  //usually pop-up window is blocked
         window.location.href='https://wallet.dfd.cash/';

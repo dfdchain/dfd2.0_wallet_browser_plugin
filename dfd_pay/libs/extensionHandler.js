@@ -26,7 +26,7 @@ window.addEventListener('message', function (resp) {
 
     var key = resp.data.serialNumber;
 
-    var sourceName = 'XwcExtWallet';
+    var sourceName = 'DfdExtWallet';
 
     if (resp.data.data && resp.data.data.source !== sourceName)
         return;

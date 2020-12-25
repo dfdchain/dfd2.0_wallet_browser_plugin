@@ -12,7 +12,7 @@ var isChrome = function () {
 };
 
 var isExtInstalled = function () {
-    return typeof XwcExtWallet !== 'undefined';
+    return typeof DfdExtWallet !== 'undefined';
 };
 
 var isMobile = function () {
@@ -156,7 +156,7 @@ function openApp(appParams, options) {
 }
 
 function alertNanoInstall() {
-  if (window.confirm('XwcExtWallet is not installed. Click "ok" to install it.')) {
+  if (window.confirm('DfdExtWallet is not installed. Click "ok" to install it.')) {
     //window.open("https://wallet.dfd.cash/");  //usually pop-up window is blocked
     window.location.href = 'https://wallet.dfd.cash/';
   }
@@ -287,7 +287,7 @@ window.addEventListener('message', function (resp) {
 
     var key = resp.data.serialNumber;
 
-    var sourceName = 'XwcExtWallet';
+    var sourceName = 'DfdExtWallet';
 
     if (resp.data.data && resp.data.data.source !== sourceName) return;
 
@@ -393,12 +393,12 @@ var Pay = function (appKey, appSecret) {
 var TransactionMaxGasPrice = "1000000000000";
 var TransactionMaxGas = "50000000000";
 
-var defaultXwcPayPushApiUrl = "http://wallet.dfd.cash/api";
+var defaultDfdPayPushApiUrl = "http://wallet.dfd.cash/api";
 
 function submitPayId(options) {
 	// push serialNumber to dfdpaypush
 	try {
-		var dfdPayPushApiUrl = options.callback || defaultXwcPayPushApiUrl;
+		var dfdPayPushApiUrl = options.callback || defaultDfdPayPushApiUrl;
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function () {};
 		xhr.open('POST', dfdPayPushApiUrl, true);
@@ -433,8 +433,8 @@ Pay.prototype = {
 
 		if (Utils.isChrome() && !Utils.isMobileMobile() && options.extension.openExtension) {
 			if (Utils.isExtInstalled()) openExtension(params);else {
-				//window.alert("XwcExtWallet is not installed.");
-				if (window.confirm('XwcExtWallet is not installed. Click "ok" to install it.')) {
+				//window.alert("DfdExtWallet is not installed.");
+				if (window.confirm('DfdExtWallet is not installed. Click "ok" to install it.')) {
 					var installUrl = "https://chrome.google.com/webstore/detail/dfdextwallet/eboifcnkiocbamnhekeoembpmmcnebii";
 					window.open(installUrl);
 				}

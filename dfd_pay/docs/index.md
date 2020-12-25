@@ -186,4 +186,4 @@ notify wallet to transfer some asset to specified contract address
 
 * queryPayInfo: function (serialNumber, options): return Promise of sent payId/serialNumber state
 
-when XwcExtWallet or dfd mobile wallet send a transaction in dapp usage, they can bind the transaction's payId to txid. and Dapp can use dfdPay.queryPayInfo to query payId's txid and transaction state.
+when DfdExtWallet or dfd mobile wallet send a transaction in dapp usage, they can bind the transaction's payId to txid. and Dapp can use dfdPay.queryPayInfo to query payId's txid and transaction state.
